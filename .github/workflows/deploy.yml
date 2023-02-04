@@ -10,6 +10,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+ 
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+ 
     steps:
       - uses: actions/checkout@v3
  
@@ -19,10 +24,10 @@ jobs:
           docker build -t easward/react-test -f ./client/Dockerfile.dev ./client
           docker run -e CI=true easward/react-test npm test
  
-      - name: Set Service Key
+      - name: Set Identity Provider
         uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: '${{ secrets.GKE_SA_KEY }}'
+          workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
  
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
