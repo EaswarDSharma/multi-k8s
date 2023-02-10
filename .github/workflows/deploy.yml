@@ -23,16 +23,11 @@ jobs:
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker build -t easward/react-test -f ./client/Dockerfile.dev ./client
           docker run -e CI=true easward/react-test npm test
- 
       - name: Set Identity Provider
-        uses: 'google-github-actions/auth@v0'
+        uses: 'google-github-actions/auth@v1'
         with:
           workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'git-deployer@multi-k8s-376714.iam.gserviceaccount.com'
-          #projects/380999466939/locations/global/workloadIdentityPools/my-pool
-          #projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-
-          token_format: 'access_token'
+          service_account: 'git-deployer@multi-k8s-376714.iam.gserviceaccount          token_format: 'access_token'
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
         with:
