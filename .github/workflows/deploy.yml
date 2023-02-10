@@ -29,6 +29,8 @@ jobs:
           workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
           service_account: 'git-deployer@multi-k8s-376714.iam.gserviceaccount'       
           token_format: 'access_token'
+          project_id: multi-k8s-376714
+
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
         with:
