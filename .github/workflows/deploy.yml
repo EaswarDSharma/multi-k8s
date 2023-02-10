@@ -30,6 +30,7 @@ jobs:
           service_account: 'git-deployer@multi-k8s-376714.iam.gserviceaccount'       
           token_format: 'access_token'
           project_id: multi-k8s-376714
+          location: us-central1-c
 
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
