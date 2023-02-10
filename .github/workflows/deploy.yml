@@ -22,7 +22,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'git-deployer-207@multi-k8s-376714.iam.gserviceaccount.com'       
+          service_account: 'git-deployer@multi-k8s-376714.iam.gserviceaccount.com'       
           token_format: 'access_token'
       - name: Test
         run: |-
