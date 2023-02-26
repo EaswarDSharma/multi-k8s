@@ -23,7 +23,7 @@ jobs:
         with:
           workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
           service_account: 'newone@multi-k8s-376714.iam.gserviceaccount.com'       
-          #token_format: 'access_token'
+          token_format: 'access_token'
       - name: Test
         run: |-
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
