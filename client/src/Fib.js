@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import MaterialReactTable from 'material-react-table';
 import { BrowserRouter as  Link } from 'react-router-dom';
-import socketIo from 'socket.io-client';
+import io from 'socket.io-client';
 
 function Copyright() {
   return (
@@ -34,7 +34,7 @@ function Fib() {
     ],
     [],);
   useEffect(() => {
-    const socket = socketIo('http://localhost:3001');
+    const socket = io('http://localhost:3001');
 
     // Listen for the 'dataUpdated' event from the server
     socket.on('dataUpdated', (data) => {
