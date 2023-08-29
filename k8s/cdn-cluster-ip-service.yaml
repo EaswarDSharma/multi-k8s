@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cdn-external-service
+spec:
+  type: ExternalName
+  externalName: d3qxx25hpuxqdm.cloudfront.net
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP

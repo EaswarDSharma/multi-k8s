@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import MaterialReactTable from 'material-react-table';
 import { BrowserRouter as  Link } from 'react-router-dom';
+import socketIo from 'socket.io-client';
 
 function Copyright() {
   return (
@@ -33,21 +34,36 @@ function Fib() {
     ],
     [],);
   useEffect(() => {
+    const socket = socketIo('http://localhost:3001');
+
+    // Listen for the 'dataUpdated' event from the server
+    socket.on('dataUpdated', (data) => {
+      // Update the state with the new data
+      setValues((prevValues) => ({
+        ...prevValues,
+        [data.index]: data.value,
+      }));
+    });
     const fetchvalues = async () => {
+      try {
       const values = await axios.get('/api/values/current');
-      setvalues(values.data);
+      setvalues(values.data); } catch (error) {
+        console.log(error);
+      }
     };
     const fetchIndexes = async () => {
+      try {
       const seenIndexes = await axios.get('/api/values/all');
-      setSeenIndexes(seenIndexes.data);
+      setSeenIndexes(seenIndexes.data); } catch (error) {
+        console.log(error);
+      }
     };
-    try {
       fetchvalues();
       fetchIndexes();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+      return () => {
+        socket.disconnect();
+      };
+    }, []);
   const handleSubmit = async (event) => {
     if(index.trim()!==""){
     event.preventDefault();
