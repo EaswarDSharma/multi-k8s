@@ -34,7 +34,7 @@ function Fib() {
     ],
     [],);
   useEffect(() => {
-    const socket = io('http://localhost:3001');
+    const socket = io('/');
 
     // Listen for the 'dataUpdated' event from the server
     socket.on('dataUpdated', (data) => {

@@ -1,6 +1,7 @@
 const axios = require('axios');
 const keys = require('./keys');
 const redis = require('redis');
+const io = require('socket.io-client');
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
@@ -8,9 +9,8 @@ const redisClient = redis.createClient({
   retry_strategy: () => 1000,
 });
 const sub = redisClient.duplicate();
-const socketIo = require('socket.io-client');
 
-const socket = socketIo('http://localhost:3001'); // Connect to the WebSocket server
+const socket = io('http://localhost:3001'); // Connect to the WebSocket server
 
 function fib(index) {
   if (index < 2) return 1;
