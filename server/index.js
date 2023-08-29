@@ -4,13 +4,16 @@ const keys = require("./keys");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const socketIo = require('socket.io');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
 
-const server = http.createServer(app);
+const server = app.listen(3001, () => {
+  console.log('Server running on port 3001');
+});
 const io = socketIo(server);
 
 // Postgres Client Setup
@@ -72,9 +75,4 @@ app.listen(5000, (err) => {
 io.on('connection', (socket) => {
   console.log('Client connected to WebSocket');
   // You can handle events and communication here
-});
-
-// Start the server
-server.listen(3001, () => {
-  console.log('Server running on port 3001');
 });
