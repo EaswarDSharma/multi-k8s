@@ -39,7 +39,7 @@ function Fib() {
     // Listen for the 'dataUpdated' event from the server
     socket.on('dataUpdated', (data) => {
       // Update the state with the new data
-      setValues((prevValues) => ({
+      setvalues((prevValues) => ({
         ...prevValues,
         [data.index]: data.value,
       }));
