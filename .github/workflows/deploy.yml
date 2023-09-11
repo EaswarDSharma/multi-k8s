@@ -21,8 +21,8 @@ jobs:
       - name: Set Identity Provider
         uses: 'google-github-actions/auth@v0'
         with:
-          workload_identity_provider: 'projects/380999466939/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'newone@multi-k8s-376714.iam.gserviceaccount.com'       
+          workload_identity_provider: 'projects/772359961019/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
+          service_account: 'travis-deployer@sandcastle-398511.iam.gserviceaccount.com'       
           token_format: 'access_token'
       - name: Test
         run: |-
