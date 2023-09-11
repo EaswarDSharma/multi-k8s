@@ -1,7 +1,6 @@
 const axios = require('axios');
 const keys = require('./keys');
 const redis = require('redis');
-const io = require('socket.io-client');
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
@@ -10,7 +9,6 @@ const redisClient = redis.createClient({
 });
 const sub = redisClient.duplicate();
 
-const socket = io('http://localhost:3001'); // Connect to the WebSocket server
 
 function fib(index) {
   if (index < 2) return 1;
@@ -31,6 +29,5 @@ sub.on('message', async (channel, message) => {
   //redisClient.hset('values', message,await fibb(parseInt(message))
   const foodmess=await edfood(message)
   await redisClient.hset('values', message,foodmess)
-  socket.emit('dataUpdated', { index: message, value: foodmess });
 })
 sub.subscribe('insert');

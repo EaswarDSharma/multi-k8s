@@ -33,13 +33,18 @@ jobs:
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
         with:
-          project_id: multi-k8s-376714
+          project_id: sandcastle-398511
  
       - name: Auth
         run: |-
           gcloud --quiet auth configure-docker
  
-      
+      - name: Get Credentials
+        uses: google-github-actions/get-gke-credentials@v0
+        with:
+          cluster_name: cluster-1
+          location: asia-south1-b	
+ 
  
       - name: Build
         run: |-

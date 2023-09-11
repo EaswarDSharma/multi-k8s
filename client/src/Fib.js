@@ -2,9 +2,8 @@ import React, { useState, useEffect,useMemo} from 'react';
 import axios from 'axios';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
-import MaterialReactTable from 'material-react-table';
+import MaterialReactTable,{MRT_ColumnDef} from 'material-react-table';
 import { BrowserRouter as  Link } from 'react-router-dom';
-import io from 'socket.io-client';
 
 function Copyright() {
   return (
@@ -30,20 +29,21 @@ function Fib() {
       {
         accessorKey: 'link',
         header: 'link',
+        Cell: ({ cell, renderedCellValue }) => (
+          React.createElement(
+            'a', 
+            {
+              onClick: (e) => e.stopPropagation(),
+              href: `https://${cell.getValue()}`,
+              target: '_blank',
+            },
+            renderedCellValue
+          )
+        ),
       },
     ],
     [],);
   useEffect(() => {
-    const socket = io('/');
-
-    // Listen for the 'dataUpdated' event from the server
-    socket.on('dataUpdated', (data) => {
-      // Update the state with the new data
-      setvalues((prevValues) => ({
-        ...prevValues,
-        [data.index]: data.value,
-      }));
-    });
     const fetchvalues = async () => {
       try {
       const values = await axios.get('/api/values/current');
@@ -60,9 +60,7 @@ function Fib() {
     };
       fetchvalues();
       fetchIndexes();
-      return () => {
-        socket.disconnect();
-      };
+     
     }, []);
   const handleSubmit = async (event) => {
     if(index.trim()!==""){
@@ -92,12 +90,39 @@ function Fib() {
     return ind.map((number) => number).join(", ");
   });
   const Rendervalues = React.memo(() => {
-    var arr = [];
+
+    const l = document.createElement("a");
+
+// Set the href attribute (the URL the link points to)
+l.href = "https://www.example.com";
+
+// Set the link text
+l.textContent = "Visit Example.com";
+// Append the link element to the document body (or any other desired element)
+document.body.appendChild(l);
+    var arr = [{key:"one",link:"www.onetv.com"},{key:"two",link:"www.twotv.com"}];
     for (let key in values) {
       arr.push({ key: key, link: values[key] });
     }
       arr.sort((a,b) => (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0))
-
+      /* const array1 = arr.map(obj => {
+        const linkElement = document.createElement('a');
+        linkElement.href = obj.link;
+        linkElement.innerText = obj.key;
+        return { ...obj, link: linkElement.outerHTML };
+      });
+      //<a href="http://www.seriouseats.com/recipes/2009/03/cauliflower-potato-curry-aloo-ghobi-recipe.html">aloo</a> 
+      //this kind of elements are in array
+      const array=array1.map((obj)=>{  
+        var doc = new DOMParser().parseFromString(obj.link, "text/html");
+        obj.link = doc.firstChild.firstChild.nextSibling.innerHTML
+       // var l= ReactDOMServer.renderToStaticMarkup(obj.link)
+        console.log( doc.firstChild.firstChild.nextSibling.innerHTML)
+              return{...obj,link:obj.link}
+  
+      })
+      array.sort((a,b) => (a.key > b.key) ? 1 : ((b.key > a.key) ? -1 : 0))
+      console.log(JSON.stringify(array))*/
     return (
         <Box
         display="flex"
@@ -106,7 +131,20 @@ function Fib() {
         minHeight="100vh"
         
         >
-        <MaterialReactTable columns={columns} data={arr} />
+        <MaterialReactTable columns={columns} data={arr} muiTableHeadCellProps={{
+    //simple styling with the `sx` prop, works just like a style prop in this example
+    sx: {
+      fontFamily: 'Bebas Neue',
+      fontSize: 24,
+    },
+  }} 
+  muiTableBodyCellProps={{
+      //simple styling with the `sx` prop, works just like a style prop in this example
+      sx: {
+        fontFamily: 'DM Sans',
+        fontSize: "22px",
+      },
+    }}/>
         </Box>
       );
     });
