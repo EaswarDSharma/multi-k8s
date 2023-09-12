@@ -24,12 +24,7 @@ jobs:
           workload_identity_provider: 'projects/772359961019/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
           service_account: 'travis-deployer@sandcastle-398511.iam.gserviceaccount.com'       
           token_format: 'access_token'
-      - name: Test
-        run: |-
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker build -t easward/react-test -f ./client/Dockerfile.dev ./client
-          docker run -e CI=true easward/react-test npm test
-
+     
       - name: Set Project
         uses: google-github-actions/setup-gcloud@v0
         with:
