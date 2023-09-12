@@ -22,7 +22,7 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           workload_identity_provider: 'projects/977748802547/locations/global/workloadIdentityPools/my-pool/providers/my-provider'
-          service_account: 'travis-deployer@sandcastle-398511.iam.gserviceaccount.com'       
+          service_account: 'travis-deployer@icecastle.iam.gserviceaccount.com'       
           token_format: 'access_token'
       - name: Test
         run: |-
