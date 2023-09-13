@@ -42,7 +42,7 @@ jobs:
       - name: Get Credentials
         uses: google-github-actions/get-gke-credentials@v0
         with:
-          cluster_name: cluster-1
+          cluster_name: cluster-2
           location: asia-south1-a	
  
  
