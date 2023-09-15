@@ -4,10 +4,17 @@ const keys = require("./keys");
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const io = require('socket.io');
 
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
+
+
+const server = app.listen(3001, () => {
+  console.log('Server running on port 3001');
+});
+const sio = io(server);
 
 // Postgres Client Setup
 const { Pool } = require("pg");
@@ -48,17 +55,13 @@ app.get("/values/all", async (req, res) => {
 
 app.get("/values/current", async (req, res) => {
   await redisClient.hgetall("values", (err, values) => {
+    console.log("valuesare  "+JSON.stringify(values))
     res.send(values);
   });
 });
 
 app.post("/values", async (req, res) => {
   const index = req.body.index;
-
-  if (parseInt(index) > 40) {
-    return res.status(422).send("Index too high");
-  }
-
   redisClient.hset("values", index, "Nothing yet!");
    redisPublisher.publish("insert", index);
    pgClient.query("INSERT INTO values(link) VALUES($1)", [index]);
@@ -69,3 +72,7 @@ app.listen(5000, (err) => {
   console.log("Listening");
 });
 
+sio.on('connection', (socket) => {
+  console.log('Client connected to WebSocket');
+  // You can handle events and communication here
+});

@@ -5,6 +5,17 @@ import OtherPage from './OtherPage';
 import Fib from './Fib';
 import { Typography } from '@mui/material';
 
+
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Copyright © '}
+      <Link to="/">website</Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
+  );
+}
 function App() {
   return (<>
     <Router>
@@ -17,6 +28,7 @@ function App() {
             rel="noopener noreferrer"
           >
             Learn React
+            Ya!....Ya!
           </a>
           <Link to="/">Home</Link>
           <Link to="/otherpage">Other Page</Link>
@@ -25,6 +37,7 @@ function App() {
           <Route exact path="/" component={Fib} />
           <Route path="/otherpage" component={OtherPage} />
         </div>
+        <Copyright/>
 
       </div>
     </Router>
