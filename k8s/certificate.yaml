@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1 
 kind: Certificate
 metadata:
-  name: foodipes-com-tls
+  name: foodipes-com
 spec:
   secretName: foodipes-com
   issuerRef:
