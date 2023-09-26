@@ -4,7 +4,7 @@ kind: Certificate
 metadata:
   name: foodipes-com-tls
 spec:
-  secretName: foodipes-com-1
+  secretName: foodipes-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
