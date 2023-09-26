@@ -1,9 +1,10 @@
-apiVersion: cert-manager.io/v1 
+apiVersion: cert-manager.io/v1
+
 kind: Certificate
 metadata:
   name: foodipes-com-tls
 spec:
-  secretName: foodipes-com-4s672
+  secretName: foodipes-com
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
