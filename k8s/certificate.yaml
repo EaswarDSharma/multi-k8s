@@ -8,7 +8,6 @@ spec:
   issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
-  commonName: foodipes.com
   dnsNames:
     - foodipes.com
     - www.foodipes.com
