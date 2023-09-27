@@ -13,7 +13,7 @@ spec:
     - hosts:
         - foodipes.com
         - www.foodipes.com
-      secretName: foodipes-com
+      secretName: foodipes-com-b
   rules:
     - host: foodipes.com
       http:
