@@ -93,7 +93,6 @@ function Fib() {
 
     
 // Append the link element to the document body (or any other desired element)
-document.body.appendChild(l);
     var arr = [];
     for (let key in values) {
       arr.push({ key: key, link: values[key] });
