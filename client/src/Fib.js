@@ -24,11 +24,11 @@ function Fib() {
     () => [
       {
         accessorKey: 'key', //access nested data with dot notation
-        header: 'item',
+        header: 'number',
       },
       {
         accessorKey: 'link',
-        header: 'link',
+        header: 'value',
         Cell: ({ cell, renderedCellValue }) => (
           React.createElement(
             'a', 
