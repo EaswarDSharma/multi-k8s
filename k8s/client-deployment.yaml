@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: easward/multi-client-10-14
+          image: easward/multi-client-11-14
           ports:
             - containerPort: 3000

@@ -48,23 +48,23 @@ jobs:
  
       - name: Build
         run: |-
-          docker build -t easward/multi-client-10-14:latest -t easward/multi-client-10-14:${{ env.SHA }} -f ./client/Dockerfile ./client
-          docker build -t easward/multi-server-10-14:latest -t easward/multi-server-10-14:${{ env.SHA }} -f ./server/Dockerfile ./server
-          docker build -t easward/multi-worker-10-14:latest -t easward/multi-worker-10-14:${{ env.SHA }} -f ./worker/Dockerfile ./worker
+          docker build -t easward/multi-client-11-14:latest -t easward/multi-client-11-14:${{ env.SHA }} -f ./client/Dockerfile ./client
+          docker build -t easward/multi-server-11-14:latest -t easward/multi-server-11-14:${{ env.SHA }} -f ./server/Dockerfile ./server
+          docker build -t easward/multi-worker-11-14:latest -t easward/multi-worker-11-14:${{ env.SHA }} -f ./worker/Dockerfile ./worker
  
       - name: Push
         run: |-
-          docker push easward/multi-client-10-14:latest
-          docker push easward/multi-server-10-14:latest
-          docker push easward/multi-worker-10-14:latest
+          docker push easward/multi-client-11-14:latest
+          docker push easward/multi-server-11-14:latest
+          docker push easward/multi-worker-11-14:latest
  
-          docker push easward/multi-client-10-14:${{ env.SHA }}
-          docker push easward/multi-server-10-14:${{ env.SHA }}
-          docker push easward/multi-worker-10-14:${{ env.SHA }}
+          docker push easward/multi-client-11-14:${{ env.SHA }}
+          docker push easward/multi-server-11-14:${{ env.SHA }}
+          docker push easward/multi-worker-11-14:${{ env.SHA }}
  
       - name: Apply
         run: |-
           kubectl apply -f k8s
-          kubectl set image deployments/server-deployment server=easward/multi-server-10-14:${{ env.SHA }}
-          kubectl set image deployments/client-deployment client=easward/multi-client-10-14:${{ env.SHA }}
-          kubectl set image deployments/worker-deployment worker=easward/multi-worker-10-14:${{ env.SHA }}
+          kubectl set image deployments/server-deployment server=easward/multi-server-11-14:${{ env.SHA }}
+          kubectl set image deployments/client-deployment client=easward/multi-client-11-14:${{ env.SHA }}
+          kubectl set image deployments/worker-deployment worker=easward/multi-worker-11-14:${{ env.SHA }}

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: worker
-          image: easward/multi-worker-10-14
+          image: easward/multi-worker-11-14
           env:
             - name: REDIS_HOST
               value: redis-cluster-ip-service
