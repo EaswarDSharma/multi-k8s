@@ -91,16 +91,10 @@ function Fib() {
   });
   const Rendervalues = React.memo(() => {
 
-    const l = document.createElement("a");
-
-// Set the href attribute (the URL the link points to)
-l.href = "https://www.example.com";
-
-// Set the link text
-l.textContent = "Visit Example.com";
+    
 // Append the link element to the document body (or any other desired element)
 document.body.appendChild(l);
-    var arr = [{key:"one",link:"www.onetv.com"},{key:"two",link:"www.twotv.com"}];
+    var arr = [];
     for (let key in values) {
       arr.push({ key: key, link: values[key] });
     }
