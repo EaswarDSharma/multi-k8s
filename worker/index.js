@@ -19,7 +19,7 @@ async function edfood(query){
   url="temporary";
    await axios.get(`https://api.edamam.com/search?q=${query}&app_id=ac3ed5c4&app_key=32175cda1f892ab16589951f6d022100&from=0&to=1`)
   .then((response) => {
-    url=response.data.hits[0].recipe.url;
+    url=response.data.hits[0].recipe.uri;
   })
   .catch((error) => {
   url="not found"});
