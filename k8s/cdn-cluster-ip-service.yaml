@@ -7,5 +7,6 @@ spec:
   externalName: d89nix44ko1cy.cloudfront.net
   ports:
   - name: http
-    port: 80
+    port: 87
+    targetPort: 87
     protocol: TCP

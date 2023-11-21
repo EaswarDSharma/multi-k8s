@@ -24,7 +24,7 @@ spec:
               service:
                 name: cdn-cluster-ip-service
                 port:
-                  number: 3000
+                  number: 87
           - path: /api/?(.*)
             pathType: Prefix
             backend:
@@ -41,7 +41,7 @@ spec:
               service:
                 name: cdn-cluster-ip-service
                 port:
-                  number: 3000
+                  number: 87
           - path: /api/?(.*)
             pathType: Prefix
             backend:
