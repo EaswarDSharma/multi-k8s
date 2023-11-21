@@ -7,5 +7,5 @@ spec:
   externalName: d89nix44ko1cy.cloudfront.net
   ports:
   - name: http
-    port: 3000
+    port: 80
     protocol: TCP
