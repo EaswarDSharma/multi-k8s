@@ -9,6 +9,6 @@ spec:
     name: letsencrypt-prod
     kind: ClusterIssuer
   dnsNames:
-    - 35.244.58.168
-    - www.35.244.58.168
+    - foodipes.com
+    - www.foodipes.com
 
