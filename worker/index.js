@@ -28,7 +28,7 @@ async function edfood(query){
 
 sub.on('message', async (channel, message) => {
   //redisClient.hset('values', message,await fibb(parseInt(message))
-  const foodmess= edfood(message)
+  const foodmess= await edfood(message)
   await redisClient.hset('values', message,foodmess)
 })
 sub.subscribe('insert');
