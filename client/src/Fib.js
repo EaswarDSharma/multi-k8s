@@ -34,7 +34,7 @@ function Fib() {
             'a', 
             {
               onClick: (e) => e.stopPropagation(),
-              href: `https://${cell.getValue()}`,
+              href: `${cell.getValue()}`,
               target: '_blank',
             },
             renderedCellValue
